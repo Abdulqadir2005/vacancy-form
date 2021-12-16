@@ -325,6 +325,10 @@ textarea.form__input {
 }
 
 @media screen and (max-width: 540px) {
+  .form__title {
+    font-size: 2.5rem;
+  }
+  
   .select {
     margin-top: 10px;
   }
@@ -341,6 +345,10 @@ textarea.form__input {
 }
 
 @media screen and (max-width: 414px) {
+  .form__title {
+    font-size: 2rem;
+  }
+
   .form {
 
     &__input {
@@ -386,8 +394,4 @@ textarea.form__input {
       }
     }
   }
-}
-
-@media screen and (max-width: 375px) {
-
 }
