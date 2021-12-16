@@ -1,0 +1,393 @@
+*,
+*::before,
+*::after {
+  //padding: 0;
+  //margin: 0;
+  //border: 0;
+  //box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  height: 100%;
+  line-height: 1;
+  font-size: 14px;
+  background-color: #fff;
+  font-family: sans-serif;
+}
+
+textarea.form__input {
+  min-height: 120px;
+  resize: vertical;
+  padding: 20px;
+  border: 2px #615b5b inset;
+  font-family: sans-serif;
+  width: 97%;
+}
+
+.wrapper {
+  position: relative;
+  top: -150px;
+}
+
+.absolute {
+  position: sticky;
+
+}
+
+.image {
+  background-image: url("./img/logo_getmeit.jpeg");
+  background-size: cover;
+  height: 150px;
+  width: 150px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 100%;
+}
+
+.form {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #000;
+  padding: 30px 0;
+
+  &__input {
+    height: 50px;
+    padding: 0 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+
+    &:hover {
+      box-shadow: 0 0 15px #adabab;
+    }
+
+    &._error {
+      box-shadow: 0 0 15px red;
+    }
+
+    &:focus {
+      box-shadow: 0 0 15px #4d969a;
+    }
+
+
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+    text-align: center;
+  }
+
+  &__item {
+    margin: 0 0 20px 0;
+
+    &-label {
+      font-size: 18px;
+      display: block;
+      margin: 10px 0 10px 0;
+
+    }
+
+    &-checkbox {
+
+      &._error .label::before {
+        box-shadow: 0 0 15px red;
+      }
+
+      .checkbox {
+        display: none;
+
+        &:checked + .label::after {
+          transform: scale(1);
+        }
+      }
+
+      .label {
+        font-size: 16px;
+        line-height: 140%;
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+          content: "";
+          align-self: flex-start;
+          flex: 0 0 24px;
+          height: 24px;
+          border: 1px solid #000000;
+          border-radius: 15%;
+          margin: 0 10px 0 0;
+        }
+
+        &::after {
+          transition: transform 0.5s ease 0s;
+          content: "";
+          top: 4px;
+          left: -1px;
+          display: inline-block;
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          background-image: url("./img/checkmark.png");
+          background-size: 20px;
+          transform: scale(0);
+          margin: 0 0 0 4px;
+        }
+      }
+    }
+  }
+
+  &__label {
+    font-size: 18px;
+    display: block;
+    margin: 0 0 10px 0;
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #f0f0f3;
+    box-shadow: 10px 10px 21px #d3d3d6, -10px -10px 21px #fff;
+    margin: 0 0 0 5px;
+  }
+
+  .sendSuccess, .sendError, .sendFulfill {
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    line-height: 50px;
+    box-shadow: 5px 5px 10px #a89b9b;
+    display: none;
+    margin: 0 0 20px 5px;
+  }
+
+  .sendSuccess {
+    background-color: #13c913;
+  }
+
+  .sendError {
+    background-color: #d42b2b;
+  }
+
+  ._msgAppear {
+    display: block;
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: start;
+
+
+  &__item {
+
+    &-box {
+      display: none;
+
+      &:checked + .options__item-label::after {
+        transform: scale(1);
+      }
+    }
+
+    &-label {
+      display: inline-flex;
+      font-size: 18px;
+      line-height: 140%;
+      align-items: center;
+      position: relative;
+      margin: 0 40px 10px 0;
+
+      &::before {
+        content: "";
+        align-self: flex-start;
+        flex: 0 0 24px;
+        height: 24px;
+        background-color: #fff;
+        border: 2px solid;
+        border-radius: 15%;
+        margin: 0 10px 0 0;
+      }
+
+      &::after {
+        transition: transform 0.5s ease 0s;
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-image: url("./img/checkmark.png");
+        background-size: 20px;
+        transform: scale(0);
+        margin: 0 0 0 4px;
+      }
+    }
+  }
+}
+
+.select {
+  height: 30px;
+  margin: 0 0 0 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1023px) {
+  .image {
+    display: none;
+  }
+
+  .wrapper {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .form {
+    max-width: 80%;
+
+    &__item {
+
+      &-label {
+        font-size: 24px;
+      }
+    }
+
+    &__label {
+      font-size: 24px;
+    }
+
+    &__input {
+      height: 60px;
+      font-size: 24px;
+    }
+  }
+
+  .options {
+    flex-wrap: wrap;
+
+    &__item-label {
+      font-size: 24px;
+      margin: 0 50px 10px 0;
+
+      &::before {
+        flex: 0 0 34px;
+        height: 34px;
+      }
+
+      &::after {
+        background-size: 24px;
+        width: 24px;
+        height: 24px;
+        margin: 0 0 0 6px;
+      }
+    }
+  }
+
+  .select {
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .select {
+    margin-top: 10px;
+  }
+
+  .form {
+
+    &__item {
+
+      textarea {
+        width: 90%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .form {
+
+    &__input {
+      width: 95%;
+      height: 50px;
+      font-size: 18px;
+    }
+
+    &__item {
+
+      &-label {
+        font-size: 18px;
+      }
+    }
+
+    &__label {
+      font-size: 18px;
+    }
+  }
+
+  .select {
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .options {
+    flex-wrap: wrap;
+
+    &__item-label {
+      font-size: 18px;
+      margin: 0 50px 10px 0;
+
+      &::before {
+        flex: 0 0 24px;
+        height: 24px;
+      }
+
+      &::after {
+        background-size: 14px;
+        width: 14px;
+        height: 14px;
+        margin: 0 0 0 6px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+
+}
