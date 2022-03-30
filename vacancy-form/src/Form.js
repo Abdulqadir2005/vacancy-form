@@ -18,7 +18,19 @@ class Form extends Component {
         },
         salaryAmount: '',
         salaryQuestion: false,
-        location: '',
+        location: {
+            Moscow: true,
+            Petersburg: false,
+            Novgorod: false,
+            Kaliningrad: false,
+            Krasnodar: false,
+            Kazan: false,
+            CIS: false,
+            Europe: false,
+            Ekaterinburg: false,
+            Novosibirsk: false,
+            Remote: false
+        },
         relocationQuestion: false,
         relocationPackage: '',
         educationQuestion: false,
@@ -94,9 +106,9 @@ class Form extends Component {
     }
 
     handleLocation = e => {
-        this.setState({
-            location: e.target.value
-        })
+        let state = this.state;
+        state.location[e.target.value] = e.target.checked;
+        this.setState(state);
     }
 
     handleRelocationPackage = e => {
@@ -258,7 +270,19 @@ class Form extends Component {
             },
             salaryAmount: '',
             salaryQuestion: false,
-            location: '',
+            location: {
+                Moscow: true,
+                Petersburg: false,
+                Novgorod: false,
+                Kaliningrad: false,
+                Krasnodar: false,
+                Kazan: false,
+                CIS: false,
+                Europe: false,
+                Ekaterinburg: false,
+                Novosibirsk: false,
+                Remote: false
+            },
             relocationQuestion: false,
             relocationPackage: '',
             educationQuestion: false,
@@ -340,7 +364,7 @@ class Form extends Component {
                             <label
                                 htmlFor="companyName"
                                 className="form__label">
-                                Company Name*:
+                                Название компании*:
                             </label>
                             <input
                                 id="companyName"
@@ -358,7 +382,7 @@ class Form extends Component {
                             <label
                                 htmlFor="positionName"
                                 className="form__label">
-                                Position Name*
+                                Название позиции*
                             </label>
                             <input
                                 id="positionName"
@@ -464,7 +488,7 @@ class Form extends Component {
                             <label
                                 htmlFor="formSalary"
                                 className="form__label">
-                                Salary*
+                                Зарплата*
                             </label>
                             <input
                                 id="formSalary"
@@ -490,19 +514,185 @@ class Form extends Component {
 
                         {/* Вопрос про локацию позиции */}
                         <div className="form__item">
-                            <label
-                                htmlFor="formLocation"
-                                className="form__label">
-                                Position location*
-                            </label>
-                            <input
-                                id="formLocation"
-                                type="text"
-                                name="Position"
-                                className="form__input _req"
-                                placeholder="Moscow, Russia/Remote"
-                                onChange={this.handleLocation}
-                            />
+                            <div className="form__label">Локация позиции*</div>
+                            <div className="options _req">
+                                <div className="options__item">
+                                    <input
+                                        id="formMoscow"
+                                        type="checkbox"
+                                        value="Moscow"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Moscow}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formMoscow"
+                                        className="options__item-label">
+                                        Москва
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formPetersburg"
+                                        type="checkbox"
+                                        value="Petersburg"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Petersburg}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formPetersburg"
+                                        className="options__item-label">
+                                        Питер
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formNovgorod"
+                                        type="checkbox"
+                                        value="Novgorod"
+                                        name="location"
+                                        className="options__item-box"                                    checked={this.state.options.Junior}
+                                        checked={this.state.location.Novgorod}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formNovgorod"
+                                        className="options__item-label">
+                                        Н.Новгород
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formKaliningrad"
+                                        type="checkbox"
+                                        value="Kaliningrad"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Kaliningrad}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formKaliningrad"
+                                        className="options__item-label">
+                                        Калининград
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formKrasnodar"
+                                        type="checkbox"
+                                        value="Krasnodar"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Krasnodar}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formKrasnodar"
+                                        className="options__item-label">
+                                        Краснодар
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formKazan"
+                                        type="checkbox"
+                                        value="Kazan"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Kazan}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formKazan"
+                                        className="options__item-label">
+                                        Казань
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formCIS"
+                                        type="checkbox"
+                                        value="CIS"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.CIS}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formCIS"
+                                        className="options__item-label">
+                                        СНГ
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formEurope"
+                                        type="checkbox"
+                                        value="Europe"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Europe}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formEurope"
+                                        className="options__item-label">
+                                        Европа
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formEkaterinburg"
+                                        type="checkbox"
+                                        value="Ekaterinburg"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Ekaterinburg}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formEkaterinburg"
+                                        className="options__item-label">
+                                        Екатеринбург
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formNovosibirsk"
+                                        type="checkbox"
+                                        value="Novosibirsk"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Novosibirsk}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formNovosibirsk"
+                                        className="options__item-label">
+                                        Новосибирск
+                                    </label>
+                                </div>
+                                <div className="options_item">
+                                    <input
+                                        id="formRemote"
+                                        type="checkbox"
+                                        value="Remote"
+                                        name="location"
+                                        className="options__item-box"
+                                        checked={this.state.location.Remote}
+                                        onChange={this.handleLocation}
+                                    />
+                                    <label
+                                        htmlFor="formRemote"
+                                        className="options__item-label">
+                                        Удаленка
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <Option
