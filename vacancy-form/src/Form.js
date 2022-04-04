@@ -5,74 +5,56 @@ import {Input, Option} from "./components";
 
 
 class Form extends Component {
-
-    state = {
-        companyName: '',
-        positionName: '',
-        options: {
-            Junior: true,
-            Middle: false,
-            Senior: false,
-            Lead: false,
-            Head: false
-        },
-        salaryAmount: '',
-        salaryQuestion: false,
-        location: {
-            Moscow: true,
-            Petersburg: false,
-            Novgorod: false,
-            Kaliningrad: false,
-            Krasnodar: false,
-            Kazan: false,
-            CIS: false,
-            Europe: false,
-            Ekaterinburg: false,
-            Novosibirsk: false,
-            Remote: false
-        },
-        relocationQuestion: false,
-        relocationPackage: '',
-        educationQuestion: false,
-        education: '',
-        stack: '',
-        requirements: '',
-        addRequirements: '',
-        benefits: '',
-        companyDescription: '',
-        positionDescription: '',
-        tasksDescription: '',
-        team: '',
-        rates: '',
-        steps: '',
-        referral: '',
-        username: '',
-        english: '',
-        englishQuestion: false,
-        sentForm: false,
-        errorSent: false,
-        fulfill: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            companyName: '',
+            positionName: '',
+            grade: [],
+            salaryAmount: '',
+            salaryQuestion: false,
+            location: [],
+            relocationQuestion: false,
+            relocationPackage: '',
+            educationQuestion: false,
+            education: '',
+            stack: '',
+            requirements: '',
+            addRequirements: '',
+            benefits: '',
+            companyDescription: '',
+            positionDescription: '',
+            tasksDescription: '',
+            team: '',
+            rates: '',
+            steps: '',
+            referral: '',
+            username: '',
+            english: '',
+            englishQuestion: false,
+            sentForm: false,
+            errorSent: false,
+            fulfill: false
+        }
     }
+
 
     handleRelocationOption = e => {
         this.setState({
             relocationQuestion: e.target.value
         })
-        console.log(this.state.relocationQuestion)
     }
 
     handleEducationOption = e => {
         this.setState({
             educationQuestion: e.target.value
         })
-        console.log(this.state.educationQuestion)
     }
 
     handleEnglishOption = e => {
         this.setState({
             englishQuestion: e.target.value
         })
-        console.log(this.state.englishQuestion)
     }
 
 
@@ -89,8 +71,9 @@ class Form extends Component {
     }
 
     handlePositionGrade = e => {
+
         let state = this.state;
-        state.options[e.target.value] = e.target.checked;
+        state.grade[e.target.value] = e.target.checked;
         this.setState(state);
     }
 
@@ -102,7 +85,6 @@ class Form extends Component {
 
     handleSalaryQuestion = e => {
         this.setState({salaryQuestion: e.target.value});
-        console.log(this.state)
     }
 
     handleLocation = e => {
@@ -204,85 +186,67 @@ class Form extends Component {
 
     formSubmit = (e) => {
         e.preventDefault();
-
-        let form = document.getElementById('form');
-
-
-        let data = {
-            companyName : this.state.companyName,
-            positionName : this.state.positionName,
-            options: this.state.options,
-            salaryAmount: this.state.salaryAmount,
-            salaryQuestion: this.state.salaryQuestion,
-            location: this.state.location,
-            relocationQuestion: this.state.relocationQuestion,
-            relocationPackage: this.state.relocationPackage,
-            educationQuestion: this.state.educationQuestion,
-            education: this.state.education,
-            stack: this.state.stack,
-            requirements: this.state.requirements,
-            addRequirements: this.state.addRequirements,
-            benefits: this.state.benefits,
-            companyDescription: this.state.companyDescription,
-            positionDescription: this.state.positionDescription,
-            tasksDescription: this.state.tasksDescription,
-            team: this.state.team,
-            rates: this.state.rates,
-            steps: this.state.steps,
-            referral: this.state.referral,
-            username: this.state.username,
-            english: this.state.english,
-            englishQuestion: this.state.englishQuestion,
-        }
-
-        let error = this.formValidate(form);
-
-        if (error === 0) {
-            axios
-                .post('/api/form/', data)
-                .then(res => {
-                    this.setState({
-                        sentForm: true
-                    }, this.resetForm)
-                })
-                .catch(() => {
-                    this.setState({
-                        errorSent: true
-                    })
-                })
-        } else {
-            this.setState({
-                fulfill: true
-            })
-        }
+        console.log(this.state)
+        // let form = document.getElementById('form');
+        //
+        //
+        // let data = {
+        //     companyName : this.state.companyName,
+        //     positionName : this.state.positionName,
+        //     grade: this.state.grade,
+        //     salaryAmount: this.state.salaryAmount,
+        //     salaryQuestion: this.state.salaryQuestion,
+        //     location: this.state.location,
+        //     relocationQuestion: this.state.relocationQuestion,
+        //     relocationPackage: this.state.relocationPackage,
+        //     educationQuestion: this.state.educationQuestion,
+        //     education: this.state.education,
+        //     stack: this.state.stack,
+        //     requirements: this.state.requirements,
+        //     addRequirements: this.state.addRequirements,
+        //     benefits: this.state.benefits,
+        //     companyDescription: this.state.companyDescription,
+        //     positionDescription: this.state.positionDescription,
+        //     tasksDescription: this.state.tasksDescription,
+        //     team: this.state.team,
+        //     rates: this.state.rates,
+        //     steps: this.state.steps,
+        //     referral: this.state.referral,
+        //     username: this.state.username,
+        //     english: this.state.english,
+        //     englishQuestion: this.state.englishQuestion,
+        // }
+        //
+        // let error = this.formValidate(form);
+        //
+        // if (error === 0) {
+        //     axios
+        //         .post('/api/form/', data)
+        //         .then(res => {
+        //             this.setState({
+        //                 sentForm: true
+        //             }, this.resetForm)
+        //         })
+        //         .catch(() => {
+        //             this.setState({
+        //                 errorSent: true
+        //             })
+        //         })
+        // } else {
+        //     this.setState({
+        //         fulfill: true
+        //     })
+        // }
     }
 
     resetForm = () => {
         this.setState({
             companyName: '',
             positionName: '',
-            options: {
-                Junior: true,
-                Middle: false,
-                Senior: false,
-                Lead: false,
-                Head: false
-            },
+            grade: [],
             salaryAmount: '',
             salaryQuestion: false,
-            location: {
-                Moscow: true,
-                Petersburg: false,
-                Novgorod: false,
-                Kaliningrad: false,
-                Krasnodar: false,
-                Kazan: false,
-                CIS: false,
-                Europe: false,
-                Ekaterinburg: false,
-                Novosibirsk: false,
-                Remote: false
-            },
+            location: [],
             relocationQuestion: false,
             relocationPackage: '',
             educationQuestion: false,
@@ -345,10 +309,42 @@ class Form extends Component {
         input.classList.remove('_error');
     }
 
+    componentDidMount() {
+        let locationData = [];
+        let newLocationData = fetch('https://test.getmeit.ru/properties/city/')
+            .then(response => response.json()
+                .then(data => {
+                    data
+                        .filter(data => data.id !== 10)
+                        .forEach(data => locationData.push(data))
+                    this.setState({
+                        location: locationData
+                    })
+                    return locationData;
+                }),
 
+            )
+
+        let gradeData = [];
+        let newGradeData = fetch('https://test.getmeit.ru/properties/grade/')
+            .then(response => response.json()
+                .then(data => {
+                    data
+                        .forEach(data => gradeData.push(data))
+                    this.setState({
+                        grade: gradeData
+                    })
+                    return gradeData;
+                }),
+
+            )
+
+    }
 
 
     render() {
+        const { location, grade } = this.state;
+
         return (
             <div>
                 <div className="image"/>
@@ -399,86 +395,25 @@ class Form extends Component {
                         <div className="form__item">
                             <div className="form__label">Укажите грейд позиции*</div>
                             <div className="options _req">
-                                <div className="options__item">
-                                    <input
-                                        id="formJunior"
-                                        type="checkbox"
-                                        value="Junior"
-                                        name="grade"
-                                        className="options__item-box"
-                                        checked={this.state.options.Junior}
-                                        onChange={this.handlePositionGrade}
-                                    />
-                                    <label
-                                        htmlFor="formJunior"
-                                        className="options__item-label">
-                                        Junior
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formMiddle"
-                                        type="checkbox"
-                                        value="Middle"
-                                        name="grade"
-                                        className="options__item-box"
-                                        checked={this.state.options.Middle}
-                                        onChange={this.handlePositionGrade}
-                                    />
-                                    <label
-                                        htmlFor="formMiddle"
-                                        className="options__item-label">
-                                        Middle
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formSenior"
-                                        type="checkbox"
-                                        value="Senior"
-                                        name="grade"
-                                        className="options__item-box"                                    checked={this.state.options.Junior}
-                                        checked={this.state.options.Senior}
-                                        onChange={this.handlePositionGrade}
-                                    />
-                                    <label
-                                        htmlFor="formSenior"
-                                        className="options__item-label">
-                                        Senior
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formLead"
-                                        type="checkbox"
-                                        value="Lead"
-                                        name="grade"
-                                        className="options__item-box"
-                                        checked={this.state.options.Lead}
-                                        onChange={this.handlePositionGrade}
-                                    />
-                                    <label
-                                        htmlFor="formLead"
-                                        className="options__item-label">
-                                        Lead
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formHead"
-                                        type="checkbox"
-                                        value="Head"
-                                        name="grade"
-                                        className="options__item-box"
-                                        checked={this.state.options.Head}
-                                        onChange={this.handlePositionGrade}
-                                    />
-                                    <label
-                                        htmlFor="formHead"
-                                        className="options__item-label">
-                                        Head
-                                    </label>
-                                </div>
+                                {grade.map(item => (
+                                    <div className="options__item" key={item.id}>
+                                        <input
+                                            id={item.value}
+                                            key={item.id}
+                                            type="checkbox"
+                                            value={item.value}
+                                            name={item.id}
+                                            className="options__item-box"
+                                            checked={this.state.grade.item}
+                                            onChange={this.handlePositionGrade}
+                                        />
+                                        <label
+                                            htmlFor={item.value}
+                                            className="options__item-label">
+                                            {item.value}
+                                        </label>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
@@ -516,182 +451,28 @@ class Form extends Component {
                         <div className="form__item">
                             <div className="form__label">Локация позиции*</div>
                             <div className="options _req">
-                                <div className="options__item">
-                                    <input
-                                        id="formMoscow"
-                                        type="checkbox"
-                                        value="Moscow"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Moscow}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formMoscow"
-                                        className="options__item-label">
-                                        Москва
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formPetersburg"
-                                        type="checkbox"
-                                        value="Petersburg"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Petersburg}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formPetersburg"
-                                        className="options__item-label">
-                                        Питер
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formNovgorod"
-                                        type="checkbox"
-                                        value="Novgorod"
-                                        name="location"
-                                        className="options__item-box"                                    checked={this.state.options.Junior}
-                                        checked={this.state.location.Novgorod}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formNovgorod"
-                                        className="options__item-label">
-                                        Н.Новгород
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formKaliningrad"
-                                        type="checkbox"
-                                        value="Kaliningrad"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Kaliningrad}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formKaliningrad"
-                                        className="options__item-label">
-                                        Калининград
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formKrasnodar"
-                                        type="checkbox"
-                                        value="Krasnodar"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Krasnodar}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formKrasnodar"
-                                        className="options__item-label">
-                                        Краснодар
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formKazan"
-                                        type="checkbox"
-                                        value="Kazan"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Kazan}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formKazan"
-                                        className="options__item-label">
-                                        Казань
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formCIS"
-                                        type="checkbox"
-                                        value="CIS"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.CIS}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formCIS"
-                                        className="options__item-label">
-                                        СНГ
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formEurope"
-                                        type="checkbox"
-                                        value="Europe"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Europe}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formEurope"
-                                        className="options__item-label">
-                                        Европа
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formEkaterinburg"
-                                        type="checkbox"
-                                        value="Ekaterinburg"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Ekaterinburg}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formEkaterinburg"
-                                        className="options__item-label">
-                                        Екатеринбург
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formNovosibirsk"
-                                        type="checkbox"
-                                        value="Novosibirsk"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Novosibirsk}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formNovosibirsk"
-                                        className="options__item-label">
-                                        Новосибирск
-                                    </label>
-                                </div>
-                                <div className="options_item">
-                                    <input
-                                        id="formRemote"
-                                        type="checkbox"
-                                        value="Remote"
-                                        name="location"
-                                        className="options__item-box"
-                                        checked={this.state.location.Remote}
-                                        onChange={this.handleLocation}
-                                    />
-                                    <label
-                                        htmlFor="formRemote"
-                                        className="options__item-label">
-                                        Удаленка
-                                    </label>
-                                </div>
+                                {location.map(item => (
+                                    <div
+                                        className="options__item"
+                                        key={item.id}
+                                    >
+                                        <input
+                                            id={item.value}
+                                            key={item.id}
+                                            type="checkbox"
+                                            value={item.value}
+                                            name={item.id}
+                                            className="options__item-box"
+                                            checked={this.state.location.item}
+                                            onChange={this.handleLocation}
+                                        />
+                                        <label
+                                            htmlFor={item.value}
+                                            className="options__item-label">
+                                            {item.value}
+                                        </label>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
